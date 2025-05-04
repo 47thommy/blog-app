@@ -1,0 +1,45 @@
+services:
+  db:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
+
+  event-bus:
+    build:
+      context: ./event-bus
+      dockerfile: Dockerfile
+    ports:
+      - "4005:4005"
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+  posts:
+    build:
+      context: ./posts
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+  comments:
+    build:
+      context: ./comments
+      dockerfile: Dockerfile
+    ports:
+      - "5000:4001"
+  query:
+    build:
+      context: ./query
+      dockerfile: Dockerfile
+    ports:
+      - "6000:4002"
+  moderation:
+    build:
+      context: ./moderation
+      dockerfile: Dockerfile
+    ports:
+      - "7000:4003"
